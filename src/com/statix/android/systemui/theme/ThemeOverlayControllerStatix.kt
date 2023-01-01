@@ -46,7 +46,7 @@ class ThemeOverlayControllerStatix @Inject constructor(
     featureFlags: FeatureFlags,
     @Main resources: Resources,
     wakefulnessLifecycle: WakefulnessLifecycle,
-    private val configurationController: ConfigurationController,
+    configurationController: ConfigurationController,
 ) : ThemeOverlayController(
     context,
     broadcastDispatcher,
@@ -63,17 +63,7 @@ class ThemeOverlayControllerStatix @Inject constructor(
     featureFlags,
     resources,
     wakefulnessLifecycle,
+    configurationController,
 ) {
-
-    private val darkConfigurationListener = object : ConfigurationListener {
-        override fun onUiModeChanged() {
-            reevaluateSystemTheme(true /* forceReload */)
-        }
-    }
-
-    override fun start() {
-        super.start()
-        configurationController.addCallback(darkConfigurationListener)
-    }
 
 }
